@@ -532,6 +532,24 @@
 .privacy-note::before { content: "◇"; color: var(--gold); }
 
 /* Contact */
+.booking-section { background: #061b19; color: #fff; text-align: center; position: relative; overflow: hidden; isolation: isolate; }
+.booking-section::after { content: ""; position: absolute; left: 0; right: 0; top: 40%; height: 120px; background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201000%20120%22%3E%3Cpath%20d%3D%22M0%2060%20C40%2060%2045%2020%2070%2020%20C95%2020%2095%20100%20120%20100%20C145%20100%20148%2060%20175%2060%20L260%2060%20C285%2060%20288%2015%20315%2015%20C342%2015%20342%20105%20369%20105%20C396%20105%20399%2060%20424%2060%20L520%2060%20C545%2060%20548%2030%20573%2030%20C598%2030%20598%2090%20623%2090%20C648%2090%20651%2060%20676%2060%20L760%2060%20C785%2060%20788%2025%20813%2025%20C838%2025%20838%2095%20863%2095%20C888%2095%20891%2060%20916%2060%20L1000%2060%22%20fill%3D%22none%22%20stroke%3D%22%236fd0ca%22%20stroke-width%3D%221.4%22%20opacity%3D%220.4%22/%3E%3C/svg%3E"); background-size: 1000px 120px; background-repeat: repeat-x; opacity: .1; pointer-events: none; z-index: -1; }
+.booking-section .feature-heading { margin-left: auto; margin-right: auto; text-align: center; }
+.booking-section .feature-heading h2 { color: #fff; }
+.booking-section .feature-heading > p:last-child { color: #94aaa4; margin-left: auto; margin-right: auto; }
+.booking-section .feature-kicker { justify-content: center; color: var(--teal); }
+.booking-shell { max-width: 620px; margin: 0 auto; }
+.booking-placeholder { padding: clamp(44px,6vw,64px) clamp(28px,5vw,56px); border: 1px dashed rgba(111,208,202,.32); background: rgba(255,255,255,.025); }
+.booking-placeholder__icon { width: 64px; height: 64px; margin: 0 auto 24px; }
+.booking-placeholder__icon svg { width: 100%; height: 100%; fill: none; }
+.booking-placeholder__icon circle { stroke: var(--teal); stroke-width: 1; opacity: .35; }
+.booking-placeholder__icon .accent { stroke: var(--gold); opacity: .7; }
+.booking-placeholder__icon .dot { fill: var(--gold); stroke: none; }
+.booking-placeholder h3 { margin: 0 0 12px; font: 300 26px var(--serif); color: #fff; }
+.booking-placeholder > p { max-width: 400px; margin: 0 auto; color: #9aafa9; font-size: 13px; line-height: 1.75; }
+.booking-actions { display: flex; gap: 16px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
+.booking-actions .button { min-width: 0; }
+
 .contact-section { background: #061b19; color: #fff; }
 .contact-section .feature-heading h2 { color: #fff; }
 .contact-section .feature-heading > p:last-child { color: #94aaa4; }

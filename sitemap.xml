@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.weronikawasiakowska.com/</loc>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.weronikawasiakowska.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.weronikawasiakowska.com/en.html"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.weronikawasiakowska.com/en.html</loc>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.weronikawasiakowska.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.weronikawasiakowska.com/en.html"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.weronikawasiakowska.com/prepare.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.weronikawasiakowska.com/prepare-en.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.weronikawasiakowska.com/privacy-policy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://www.weronikawasiakowska.com/terms.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+</urlset>

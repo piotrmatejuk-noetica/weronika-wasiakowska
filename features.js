@@ -9,6 +9,9 @@
     confirmJournal: 'Clear all journal entries saved on this device?', confirmPrep: 'Reset your preparation progress?',
     contactError: 'Please complete the required fields and check the email address.',
     contactReady: 'Your email app is opening. Review the message before sending it.',
+    contactSending: 'Sending your message…',
+    contactSent: 'Sent — I will reply within 24 hours.',
+    contactFailed: 'Sending failed. Opening your email app instead.',
     contactSubject: 'Website enquiry', contactIntro: 'Message from the contact form on weronikawasiakowska.com',
     name: 'Name', email: 'Email', message: 'Message', averages: { tension: 'Tension', sleep: 'Sleep', energy: 'Energy', focus: 'Focus' },
     resultFallback: 'This is a gentle direction for further reflection, not a diagnosis.'
@@ -19,6 +22,9 @@
     confirmJournal: 'Usunąć wszystkie wpisy dziennika zapisane na tym urządzeniu?', confirmPrep: 'Wyzerować postęp przygotowania?',
     contactError: 'Uzupełnij wymagane pola i sprawdź poprawność adresu e-mail.',
     contactReady: 'Otwieram aplikację pocztową. Sprawdź wiadomość przed wysłaniem.',
+    contactSending: 'Wysyłam wiadomość…',
+    contactSent: 'Wysłano — odpowiem w ciągu 24 godzin.',
+    contactFailed: 'Wysyłka się nie powiodła. Otwieram aplikację pocztową.',
     contactSubject: 'Zapytanie ze strony', contactIntro: 'Wiadomość z formularza na weronikawasiakowska.com',
     name: 'Imię', email: 'E-mail', message: 'Wiadomość', averages: { tension: 'Napięcie', sleep: 'Sen', energy: 'Energia', focus: 'Koncentracja' },
     resultFallback: 'To łagodna wskazówka do dalszej refleksji, a nie diagnoza.'
@@ -376,7 +382,8 @@
   function initContactForm() {
     document.querySelectorAll('form[data-contact-form]').forEach(form => {
       const status = form.querySelector('[data-contact-status]');
-      form.addEventListener('submit', event => {
+      const submitBtn = form.querySelector('button[type="submit"]');
+      form.addEventListener('submit', async event => {
         event.preventDefault();
         if (!form.reportValidity()) {
           if (status) status.textContent = copy.contactError;
@@ -387,10 +394,28 @@
         const email = String(data.get('email') || '').trim();
         const subject = String(data.get('subject') || copy.contactSubject).trim();
         const message = String(data.get('message') || '').trim();
-        const body = [copy.contactIntro, '', `${copy.name}: ${name}`, `${copy.email}: ${email}`, '', `${copy.message}:`, message].join('\n');
-        const href = `mailto:hello@weronikawasiakowska.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        if (status) status.textContent = copy.contactReady;
-        window.location.href = href;
+
+        const mailtoFallback = () => {
+          const body = [copy.contactIntro, '', `${copy.name}: ${name}`, `${copy.email}: ${email}`, '', `${copy.message}:`, message].join('\n');
+          const href = `mailto:hello@weronikawasiakowska.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          window.location.href = href;
+        };
+
+        if (submitBtn) submitBtn.disabled = true;
+        if (status) status.textContent = copy.contactSending;
+        try {
+          const response = await fetch('contact.php', { method: 'POST', body: data });
+          if (!response.ok) throw new Error('request_failed');
+          const result = await response.json().catch(() => ({ ok: false }));
+          if (!result.ok) throw new Error(result.error || 'request_failed');
+          if (status) status.textContent = copy.contactSent;
+          form.reset();
+        } catch (err) {
+          if (status) status.textContent = copy.contactFailed;
+          mailtoFallback();
+        } finally {
+          if (submitBtn) submitBtn.disabled = false;
+        }
       });
     });
   }
