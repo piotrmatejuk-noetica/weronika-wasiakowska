@@ -625,7 +625,7 @@
   .session-step small { align-self: end; }
   .session-step h3 { margin: 3px 0 4px; }
   .session-step p { grid-column: 2; }
-  .session-detail { margin-top: 25px; padding: 23px 20px; text-align: left; }
+  .session-detail { grid-column: 1/-1; margin-top: 25px; padding: 23px 20px; text-align: left; }
 
   .fit-grid { grid-template-columns: 1fr; }
   .fit-card + .fit-card { border-top: 1px solid var(--darkline); border-left: 0; }
